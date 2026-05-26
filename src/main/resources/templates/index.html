@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Hospital Management</title>
+</head>
+
+<body>
+
+<h1>Add Patient</h1>
+
+<form action="/save" method="post">
+
+    <input type="text"
+           name="name"
+           placeholder="Enter Name">
+
+    <br><br>
+
+    <input type="number"
+           name="age"
+           placeholder="Enter Age">
+
+    <br><br>
+
+    <input type="text"
+           name="disease"
+           placeholder="Enter Disease">
+
+    <br><br>
+
+    <button type="submit">
+        Save Patient
+    </button>
+
+</form>
+
+</body>
+
+</html>

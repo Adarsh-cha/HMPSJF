@@ -6,20 +6,17 @@ import jakarta.persistence.*;
 public class Patient {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private int id;
     private String name;
-    private int age;
-    private String disease;
 
-    // Default Constructor
+    private int age;
+
+    private String disease;
 
     public Patient() {
     }
-
-    // Constructor
 
     public Patient(String name, int age, String disease) {
         this.name = name;
@@ -27,36 +24,32 @@ public class Patient {
         this.disease = disease;
     }
 
-    // Getters
-
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public String getDisease() {
-        return disease;
-    }
-
-    // Setters
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getDisease() {
+        return disease;
     }
 
     public void setDisease(String disease) {
