@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Hospital Management System</title>
+
+  <style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial;
+    }
+
+    body{
+        background:#f4f7fc;
+        padding:40px;
+    }
+
+    .container{
+        width:80%;
+        margin:auto;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:30px;
+    }
+
+    .form-box{
+        background:white;
+        padding:30px;
+        border-radius:10px;
+        margin-bottom:40px;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        margin-bottom:20px;
+    }
+
+    button{
+        background:#007bff;
+        color:white;
+        border:none;
+        padding:12px 20px;
+        cursor:pointer;
+    }
+
+    table{
+        width:100%;
+        background:white;
+        border-collapse:collapse;
+    }
+
+    th,td{
+        border:1px solid #ddd;
+        padding:15px;
+        text-align:center;
+    }
+
+    th{
+        background:#007bff;
+        color:white;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Hospital Management System</h1>
+
+  <div class="form-box">
+
+    <form action="/save" method="post">
+
+      <input type="text"
+             name="name"
+             placeholder="Enter Patient Name">
+
+      <input type="number"
+             name="age"
+             placeholder="Enter Age">
+
+      <input type="text"
+             name="disease"
+             placeholder="Enter Disease">
+
+      <button type="submit">
+        Save Patient
+      </button>
+
+    </form>
+
+  </div>
+
+  <table>
+
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Disease</th>
+    </tr>
+
+    <tr th:each="patient : ${patients}">
+
+      <td th:text="${patient.id}"></td>
+
+      <td th:text="${patient.name}"></td>
+
+      <td th:text="${patient.age}"></td>
+
+      <td th:text="${patient.disease}"></td>
+
+    </tr>
+
+  </table>
+
+</div>
+
+</body>
+</html>

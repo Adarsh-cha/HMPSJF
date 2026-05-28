@@ -2,12 +2,12 @@ package com.adarsh.controller;
 
 import com.adarsh.model.Patient;
 import com.adarsh.repository.PatientRepository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/patients")
+@Controller
 public class PatientController {
 
     private final PatientRepository patientRepository;
@@ -16,15 +16,22 @@ public class PatientController {
         this.patientRepository = patientRepository;
     }
 
-    @PostMapping
-    public Patient savePatient(@RequestBody Patient patient) {
+    @GetMapping("/")
+    public String home(Model model) {
 
-        return patientRepository.save(patient);
+        model.addAttribute(
+                "patients",
+                patientRepository.findAll()
+        );
+
+        return "index";
     }
 
-    @GetMapping
-    public List<Patient> getAllPatients() {
+    @PostMapping("/save")
+    public String savePatient(Patient patient) {
 
-        return patientRepository.findAll();
+        patientRepository.save(patient);
+
+        return "redirect:/";
     }
 }
