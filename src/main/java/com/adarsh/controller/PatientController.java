@@ -2,27 +2,29 @@ package com.adarsh.controller;
 
 import com.adarsh.model.Patient;
 import com.adarsh.repository.PatientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/patients")
 public class PatientController {
 
-    @Autowired
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
-    @GetMapping("/")
-    public String home() {
-        return "index";
+    public PatientController(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
     }
 
-    @PostMapping("/save")
-    public String savePatient(Patient patient) {
+    @PostMapping
+    public Patient savePatient(@RequestBody Patient patient) {
 
-        patientRepository.save(patient);
+        return patientRepository.save(patient);
+    }
 
-        return "redirect:/";
+    @GetMapping
+    public List<Patient> getAllPatients() {
+
+        return patientRepository.findAll();
     }
 }
